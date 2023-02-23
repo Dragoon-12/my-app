@@ -8,7 +8,7 @@ node{
       sh "${mvnHome}/bin/mvn clean package"
 	  sh 'mv target/myweb*.war target/newapp.war'
    }
-   stage('SonarQube Analysis') {
+    stage('SonarQube Analysis') {
 	        def mvnHome =  tool name: 'maven3', type: 'maven'
 	        withSonarQubeEnv('sonar') { 
 	          sh "${mvnHome}/bin/mvn sonar:sonar"
@@ -35,7 +35,6 @@ node{
 		//  do nothing if there is an exception
 	}
    stage('Docker deployment'){
-   sh 'docker run -d -p 8090:8080 --name tomcattest dragoon12/myweb:0.0.2' 
+   sh 'docker run -d -p 8090:8080 --name tomcattest saidamo/myweb:0.0.2' 
    }
-}
 }
